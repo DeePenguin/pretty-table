@@ -1,1 +1,20 @@
-<p>persons-page works!</p>
+<h1>Persons</h1>
+
+<ng-container *ngrxLet="{ isLoading: isLoading$, error: error$ } as state">
+  <div class="content">
+    <ng-container *ngIf="state.isLoading; then loading" />
+    <ng-container *ngIf="state.error; then error; else content" />
+  </div>
+</ng-container>
+
+<ng-template #error>
+  <div class="error">Some error occurred. Please try again later.</div>
+</ng-template>
+
+<ng-template #loading>
+  <div class="loader"><mat-spinner /></div>
+</ng-template>
+
+<ng-template #content>
+  <pt-persons-table class="table"></pt-persons-table>
+</ng-template>

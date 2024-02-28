@@ -5,9 +5,7 @@ import type { Observable } from 'rxjs'
 import type { PersonApi } from '../models/person-api.model'
 import { environment } from 'src/environments/environment'
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class PersonsHttpService {
   private baseUrl = environment.API_URL
   constructor(private http: HttpClient) {}

@@ -1,0 +1,31 @@
+<div class="table-wrapper">
+  <table mat-table [dataSource]="tableDataSource">
+    <ng-container
+      *ngFor="let column of columnsConfig; trackBy: trackColumnsByName"
+      [matColumnDef]="column.name"
+      [sticky]="column.isSticky ? '' : null"
+    >
+      <th *matHeaderCellDef mat-header-cell>{{ column.label }}</th>
+      <td *matCellDef="let element" mat-cell>
+        <ng-container [ngSwitch]="column.type">
+          <ng-container *ngSwitchCase="'image'">
+            <img height="32" width="32" [alt]="column.label + ' of ' + element.name" [ngSrc]="element[column.name]" />
+          </ng-container>
+          <ng-container *ngSwitchCase="'activity'">
+            <div class="activity-indicator" [ngClass]="{ active: element[column.name] }"></div>
+          </ng-container>
+          <ng-container *ngSwitchDefault>{{ element[column.name] }}</ng-container>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="visibleColumns; sticky: true" mat-header-row></tr>
+
+    <tr *matRowDef="let row; columns: visibleColumns" mat-row></tr>
+
+    <tr *matNoDataRow class="mat-row">
+      <td class="not-found" colspan="4">No data found</td>
+    </tr>
+  </table>
+</div>
+<mat-paginator showFirstLastButtons [pageSizeOptions]="paginationOptions" />

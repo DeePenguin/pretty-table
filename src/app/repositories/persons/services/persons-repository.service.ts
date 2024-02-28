@@ -6,10 +6,8 @@ import type { Person } from '../models/person.model'
 import { PersonsHttpService } from './persons-http.service'
 import { convertArray } from 'src/app/common/helpers/convert-array.helper'
 
-@Injectable({
-  providedIn: 'root',
-})
-export class PersonsService {
+@Injectable()
+export class PersonsRepositoryService {
   constructor(private httpService: PersonsHttpService) {}
 
   public getPersons(): Observable<Person[]> {

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 
-import { PersonsService } from 'src/app/repositories/persons/services/persons.service'
+import { PersonsFacade } from '../../persons-store/persons-store/facade/persons.facade'
 
 @Component({
   selector: 'pt-persons-page',
@@ -9,6 +9,10 @@ import { PersonsService } from 'src/app/repositories/persons/services/persons.se
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PersonsPageComponent {
-  public persons$ = this.personsService.getPersons()
-  constructor(private personsService: PersonsService) {}
+  public isLoading$ = this.personsFacade.isLoading$
+  public error$ = this.personsFacade.error$
+
+  public constructor(private personsFacade: PersonsFacade) {
+    this.personsFacade.getPersons()
+  }
 }
