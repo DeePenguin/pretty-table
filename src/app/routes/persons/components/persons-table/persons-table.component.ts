@@ -6,9 +6,10 @@ import {
   type OnInit,
   ViewChild,
 } from '@angular/core'
+import { FormBuilder } from '@angular/forms'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
-import { Subscription } from 'rxjs'
+import { debounceTime, distinctUntilChanged, map, Subscription } from 'rxjs'
 
 import { PersonsTableService } from '../../services/persons-table.service'
 import type { Person } from 'src/app/repositories/persons/models/person.model'
@@ -23,6 +24,7 @@ import type { ColumnConfig } from 'src/app/routes/persons/models/column-config.m
 })
 export class PersonsTableComponent implements OnInit, AfterViewInit, OnDestroy {
   private subscriptions = new Subscription()
+  public search = this.fb.control('')
 
   public columnsConfig: Array<ColumnConfig<Person>> = [
     { name: 'isActive', label: 'Activity', type: 'activity' },
@@ -42,13 +44,29 @@ export class PersonsTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatPaginator) public paginator: MatPaginator | null = null
 
-  constructor(private personsTableService: PersonsTableService) {}
+  constructor(
+    private personsTableService: PersonsTableService,
+    private fb: FormBuilder,
+  ) {}
 
   public ngOnInit(): void {
     this.subscriptions.add(
       this.personsTableService.persons$.pipe().subscribe(persons => {
         this.tableDataSource.data = persons
       }),
+    )
+
+    this.subscriptions.add(
+      this.search.valueChanges
+        .pipe(
+          debounceTime(600),
+          map(query => query?.trim() || null),
+          distinctUntilChanged(),
+        )
+        .subscribe(query => {
+          this.personsTableService.search(query)
+          this.paginator?.firstPage()
+        }),
     )
   }
 

@@ -1,5 +1,7 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common'
 import { NgModule } from '@angular/core'
+import { ReactiveFormsModule } from '@angular/forms'
+import { MatInputModule } from '@angular/material/input'
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatTableModule } from '@angular/material/table'
@@ -21,7 +23,9 @@ import { PersonsTableService } from './services/persons-table.service'
     MatTableModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatInputModule,
     LetModule,
+    ReactiveFormsModule,
   ],
   providers: [PersonsTableService],
 })
