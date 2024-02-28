@@ -3,4 +3,5 @@ export interface ColumnConfig<T> {
   label?: string
   type?: string
   isSticky?: boolean
+  isSortable?: boolean
 }

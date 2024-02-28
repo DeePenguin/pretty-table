@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { MatInputModule } from '@angular/material/input'
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatSortModule } from '@angular/material/sort'
 import { MatTableModule } from '@angular/material/table'
 import { LetModule } from '@ngrx/component'
 
@@ -24,6 +25,7 @@ import { PersonsTableService } from './services/persons-table.service'
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatInputModule,
+    MatSortModule,
     LetModule,
     ReactiveFormsModule,
   ],

@@ -4,13 +4,20 @@
 </mat-form-field>
 
 <div class="table-wrapper">
-  <table mat-table [dataSource]="tableDataSource">
+  <table mat-table matSort [dataSource]="tableDataSource">
     <ng-container
       *ngFor="let column of columnsConfig; trackBy: trackColumnsByName"
       [matColumnDef]="column.name"
       [sticky]="column.isSticky ? '' : null"
     >
-      <th *matHeaderCellDef mat-header-cell>{{ column.label }}</th>
+      <ng-container *ngIf="column.isSortable; then sortable; else notSortable" />
+      <ng-template #sortable>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>{{ column.label }}</th>
+      </ng-template>
+      <ng-template #notSortable>
+        <th *matHeaderCellDef mat-header-cell>{{ column.label }}</th>
+      </ng-template>
+
       <td *matCellDef="let element" mat-cell>
         <ng-container [ngSwitch]="column.type">
           <ng-container *ngSwitchCase="'image'">
