@@ -26,6 +26,12 @@
           <ng-container *ngSwitchCase="'activity'">
             <div class="activity-indicator" [ngClass]="{ active: element[column.name] }"></div>
           </ng-container>
+          <ng-container *ngSwitchCase="'currency'">
+            {{ element[column.name] | currency: 'USD' }}
+          </ng-container>
+          <ng-container *ngSwitchCase="'address'">
+            <span class="address">{{ element[column.name] }}</span>
+          </ng-container>
           <ng-container *ngSwitchDefault>{{ element[column.name] }}</ng-container>
         </ng-container>
       </td>

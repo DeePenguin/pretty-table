@@ -1,7 +1,7 @@
 export interface Person {
   id: string
   isActive: boolean
-  balance: string
+  balance: number
   picture: string
   age: number
   name: string

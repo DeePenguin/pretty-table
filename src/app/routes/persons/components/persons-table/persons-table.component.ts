@@ -35,11 +35,11 @@ export class PersonsTableComponent implements OnInit, AfterViewInit, OnDestroy {
     { name: 'isActive', label: 'Activity', type: 'activity' },
     { name: 'id', label: 'ID' },
     { name: 'picture', label: 'Picture', type: 'image' },
-    { name: 'balance', label: 'Balance' },
+    { name: 'balance', label: 'Balance', type: 'currency' },
     { name: 'age', label: 'Age' },
     { name: 'company', label: 'Company' },
     { name: 'email', label: 'Email' },
-    { name: 'address', label: 'Address' },
+    { name: 'address', label: 'Address', type: 'address' },
     { name: 'tags', label: 'Tags', type: 'tags' },
     { name: 'favoriteFruit', label: 'Favorite Fruit' },
   ].map(el => (isKeySortable(el.name) ? { ...el, isSortable: true } : el)) as Array<ColumnConfig<Person>>

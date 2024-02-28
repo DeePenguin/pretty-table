@@ -5,7 +5,7 @@ import type { SortMap } from 'src/app/common/models/sort-map.model'
 export const personsSortMap: SortMap<PersonSortable> = {
   id: (a, b) => localeStringComparator(a.id, b.id),
   name: (a, b) => localeStringComparator(a.name, b.name),
-  balance: (a, b) => localeStringComparator(a.balance, b.balance),
+  balance: (a, b) => a.balance - b.balance,
   age: (a, b) => a.age - b.age,
   isActive: (a, b) => Number(a.isActive) - Number(b.isActive),
   company: (a, b) => localeStringComparator(a.company, b.company),

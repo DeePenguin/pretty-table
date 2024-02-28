@@ -28,6 +28,12 @@
     }
   }
 
+  .address {
+    display: inline-block;
+    min-width: 20ch;
+    max-height: 4lh;
+  }
+
   ::ng-deep {
     .mat-mdc-table-sticky-border-elem-left {
       overflow: visible;
