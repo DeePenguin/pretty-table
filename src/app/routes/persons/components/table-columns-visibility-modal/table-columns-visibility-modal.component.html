@@ -1,7 +1,9 @@
 <h1 mat-dialog-title class="title">Select visible columns:</h1>
 <div mat-dialog-content class="options-wrapper">
   <p *ngFor="let column of columns | keyvalue; trackBy: trackByKey" class="options">
-    <mat-checkbox [(ngModel)]="column.value.isVisible">{{ column.value.label }}</mat-checkbox>
+    <mat-checkbox [disabled]="!!column.value.isVisibilityToggleDisabled" [(ngModel)]="column.value.isVisible">{{
+      column.value.label
+    }}</mat-checkbox>
   </p>
 </div>
 <div mat-dialog-actions class="actions">

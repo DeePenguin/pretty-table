@@ -4,6 +4,7 @@ export interface ColumnConfig {
   isSticky?: boolean
   isSortable?: boolean
   isVisible: boolean
+  isVisibilityToggleDisabled?: boolean
 }
 
 export type ColumnsConfig<T> = Record<keyof T & string, ColumnConfig>

@@ -34,7 +34,7 @@
             <div class="activity-indicator" [ngClass]="{ active: element[column.key] }"></div>
           </ng-container>
           <ng-container *ngSwitchCase="'currency'">
-            {{ element[column.key] | currency: 'USD' }}
+            {{ element[column.key] | currency }}
           </ng-container>
           <ng-container *ngSwitchCase="'address'">
             <span class="address">{{ element[column.key] }}</span>

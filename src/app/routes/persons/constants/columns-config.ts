@@ -2,7 +2,7 @@ import type { ColumnsConfig } from '../models/columns-config.model'
 import type { Person } from 'src/app/repositories/persons/models/person.model'
 
 export const columnsConfig: ColumnsConfig<Person> = {
-  name: { label: 'Name', isVisible: true, isSortable: true, isSticky: true },
+  name: { label: 'Name', isVisible: true, isSortable: true, isSticky: true, isVisibilityToggleDisabled: true },
   isActive: { label: 'Activity', isVisible: true, isSortable: true, type: 'activity' },
   id: { label: 'ID', isVisible: true, isSortable: true },
   picture: { label: 'Picture', isVisible: true, isSortable: false, type: 'image' },
