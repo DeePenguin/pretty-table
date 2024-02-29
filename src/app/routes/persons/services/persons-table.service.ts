@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, combineLatest, map } from 'rxjs'
 
-import { searchPersons } from '../helpers/search-persons.helper'
+import { searchPersons } from '../../../repositories/persons/helpers/search-persons.helper'
 import { PersonsFacade } from '../persons-store/persons-store/facade/persons.facade'
 
 @Injectable()

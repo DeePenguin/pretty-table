@@ -1,4 +1,4 @@
-import type { ColumnsConfig } from '../../models/columns-config.model'
+import type { ColumnsConfig } from '../models/columns-config.model'
 import type { Person } from 'src/app/repositories/persons/models/person.model'
 
 export const columnsConfig: ColumnsConfig<Person> = {
