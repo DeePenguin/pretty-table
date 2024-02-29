@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: flex-start;
+
+  max-width: 100%;
+  padding: 10px;
+
+  .content {
+    flex-grow: 1;
+  }
+
+  .loader {
+    display: flex;
+    justify-content: center;
+  }
+
+  .table {
+    min-height: 89dvh;
+    max-height: 89dvh;
+  }
+}

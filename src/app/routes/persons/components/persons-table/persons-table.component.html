@@ -1,0 +1,55 @@
+<form class="table-form">
+  <mat-form-field class="search" appearance="outline">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="type to search..." type="search" [formControl]="search" />
+  </mat-form-field>
+  <pt-button appearance="icon" icon="settings" (click)="openColumnsVisibilityDialog()" />
+</form>
+<div class="table-wrapper">
+  <table mat-table matSort [dataSource]="tableDataSource">
+    <ng-container
+      *ngFor="let column of columnsConfig | keyvalue; trackBy: trackByKey"
+      [matColumnDef]="column.key"
+      [sticky]="column.value.isSticky ? '' : null"
+    >
+      <ng-container *ngIf="column.value.isSortable; then sortable; else notSortable" />
+      <ng-template #sortable>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>{{ column.value.label }}</th>
+      </ng-template>
+      <ng-template #notSortable>
+        <th *matHeaderCellDef mat-header-cell>{{ column.value.label }}</th>
+      </ng-template>
+
+      <td *matCellDef="let element" mat-cell>
+        <ng-container [ngSwitch]="column.value.type">
+          <ng-container *ngSwitchCase="'image'">
+            <img
+              height="32"
+              width="32"
+              [alt]="column.value.label + ' of ' + element.name"
+              [ngSrc]="element[column.key]"
+            />
+          </ng-container>
+          <ng-container *ngSwitchCase="'activity'">
+            <div class="activity-indicator" [ngClass]="{ active: element[column.key] }"></div>
+          </ng-container>
+          <ng-container *ngSwitchCase="'currency'">
+            {{ element[column.key] | currency }}
+          </ng-container>
+          <ng-container *ngSwitchCase="'address'">
+            <span class="address">{{ element[column.key] }}</span>
+          </ng-container>
+          <ng-container *ngSwitchDefault>{{ element[column.key] }}</ng-container>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="columnsConfig | visibleColumns; sticky: true" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: columnsConfig | visibleColumns" mat-row></tr>
+
+    <tr *matNoDataRow class="mat-row">
+      <td class="not-found" colspan="4">No data found</td>
+    </tr>
+  </table>
+</div>
+<mat-paginator showFirstLastButtons [pageSizeOptions]="paginationOptions" />
