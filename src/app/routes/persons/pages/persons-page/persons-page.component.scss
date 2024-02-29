@@ -11,6 +11,11 @@
     flex-grow: 1;
   }
 
+  .loader {
+    display: flex;
+    justify-content: center;
+  }
+
   .table {
     min-height: 89dvh;
     max-height: 89dvh;

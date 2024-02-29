@@ -2,8 +2,10 @@
 
 <ng-container *ngrxLet="{ isLoading: isLoading$, error: error$ } as state">
   <div class="content">
-    <ng-container *ngIf="state.isLoading; then loading" />
-    <ng-container *ngIf="state.error; then error; else content" />
+    <ng-container *ngIf="state.isLoading; then loading; else loaded" />
+    <ng-template #loaded>
+      <ng-container *ngIf="state.error; then error; else content" />
+    </ng-template>
   </div>
 </ng-container>
 
