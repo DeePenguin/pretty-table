@@ -11,7 +11,18 @@
     &-wrapper {
       position: relative;
       overflow: scroll;
-      flex-grow: 0;
+      flex-grow: 1;
+    }
+
+    &-form {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+
+      .search {
+        flex-grow: 1;
+        max-width: 50%;
+      }
     }
   }
 
@@ -29,9 +40,10 @@
   }
 
   .address {
-    display: inline-block;
-    min-width: 20ch;
-    max-height: 4lh;
+    display: inline-flex;
+    align-items: center;
+    min-width: 25ch;
+    min-height: 3lh;
   }
 
   ::ng-deep {
